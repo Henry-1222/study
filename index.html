@@ -1,13 +1,124 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生地会考全能复习助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .markdown-body h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .markdown-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-body li {
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        .markdown-body strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
+
+        .selection-indigo::selection {
+            background-color: #e0e7ff;
+            color: #312e81;
+        }
+    </style>
+</head>
+<body class="selection-indigo">
+    <div id="app" class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-white border-r border-slate-200 h-screen flex flex-col sticky top-0 overflow-y-auto custom-scrollbar">
+            <div class="p-6 border-b border-slate-100">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+                    <h1 class="font-bold text-xl tracking-tight">生地会考助手</h1>
+                </div>
+
+                <button id="search-trigger" class="w-full flex items-center gap-3 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-xl transition-colors text-sm">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                    <span>搜索知识点...</span>
+                </button>
+            </div>
+
+            <nav id="sidebar-nav" class="flex-1 p-4 space-y-8">
+                <!-- Navigation items will be injected here -->
+            </nav>
+
+            <div class="p-4 border-t border-slate-100 text-[10px] text-slate-400 text-center">
+                © 2024 生地会考全能复习助手
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="flex-1 flex flex-col min-w-0">
+            <!-- Content will be injected here -->
+        </main>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-[15vh] px-4">
+        <div id="search-backdrop" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+        <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+            <div class="p-4 border-b border-slate-100 flex items-center gap-4">
+                <i data-lucide="search" class="text-slate-400 w-5 h-5"></i>
+                <input id="search-input" type="text" placeholder="搜索知识点、关键词、章节..." class="flex-1 bg-transparent border-none outline-none text-lg text-slate-800 placeholder:text-slate-400">
+                <button id="search-close" class="p-2 hover:bg-slate-100 rounded-lg text-slate-400">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="search-results" class="max-h-[60vh] overflow-y-auto p-2">
+                <!-- Search results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8 flex flex-col gap-4">
+        <button id="fab-search" class="w-14 h-14 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+            <i data-lucide="book-open" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/data.js"></script>
+    <script src="/app.js"></script>
+</body>
 </html>
 
